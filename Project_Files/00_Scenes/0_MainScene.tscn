@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctayqyjd55eeb"]
+
+[ext_resource type="Script" path="res://01_Scripts/GameManager.gd" id="1_fy86y"]
+[ext_resource type="Script" path="res://01_Scripts/PlayerController.gd" id="1_tqpqe"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3a3n1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ro36g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6kbd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8is4h"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_fy86y")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_3a3n1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_ro36g")
+
+[node name="Platform" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 0.1, 0, 0, 0, 3, -3.84959, 0.571715, -1.12393)
+mesh = SubResource("BoxMesh_3a3n1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/StaticBody3D"]
+shape = SubResource("BoxShape3D_ro36g")
+
+[node name="Platform2" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 0.1, 0, 0, 0, 3, -6.79492, 1.14892, -4.99374)
+mesh = SubResource("BoxMesh_3a3n1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2/StaticBody3D"]
+shape = SubResource("BoxShape3D_ro36g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.896216, 2.82558e-08, -0.443619, 0.293423, 0.750007, 0.592784, 0.332717, -0.66143, 0.672168, -16.0021, 5.71781, 12.7041)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13973, 1.67659, 5.49473)
+can_sleep = false
+freeze_mode = 1
+script = ExtResource("1_tqpqe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CapsuleShape3D_n6kbd")
+
+[node name="Camera3D" type="Camera3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.861629, 0.507538, 0, -0.507538, 0.861629, 0, 1.741, 2.661)
+
+[node name="Model" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("CapsuleMesh_8is4h")
+skeleton = NodePath("../..")
