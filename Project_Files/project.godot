@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Platformer Galore"
+config/name="Shoppeth"
 run/main_scene="res://00_Scenes/0_MainScene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
